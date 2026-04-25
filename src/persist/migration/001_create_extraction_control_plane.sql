@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS extraction_jobs (
 
 CREATE TABLE IF NOT EXISTS extraction_job_tasks (
     job_id UUID NOT NULL REFERENCES extraction_jobs(job_id) ON DELETE CASCADE,
+    extraction_name TEXT NOT NULL,
     source TEXT NOT NULL,
     keyword TEXT NOT NULL,
     status TEXT NOT NULL,

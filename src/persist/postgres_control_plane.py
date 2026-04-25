@@ -61,6 +61,7 @@ class PostgresExtractionControlPlane:
                 """
                 CREATE TABLE IF NOT EXISTS extraction_job_tasks (
                     job_id UUID NOT NULL REFERENCES extraction_jobs(job_id) ON DELETE CASCADE,
+                    extraction_name TEXT NOT NULL,
                     source TEXT NOT NULL,
                     keyword TEXT NOT NULL,
                     status TEXT NOT NULL,
@@ -72,6 +73,12 @@ class PostgresExtractionControlPlane:
                     error_message TEXT,
                     PRIMARY KEY (job_id, source, keyword)
                 );
+                """
+            )
+            cursor.execute(
+                """
+                ALTER TABLE extraction_job_tasks
+                ADD COLUMN IF NOT EXISTS extraction_name TEXT;
                 """
             )
         self._connection.commit()
@@ -89,14 +96,16 @@ class PostgresExtractionControlPlane:
         self._connection.commit()
         return job_id
 
-    def start_task(self, *, job_id: UUID, source: str, keyword: str) -> None:
+    def start_task(self, *, job_id: UUID, source: str, keyword: str) -> str:
+        extraction_name = str(uuid4())
         with self._connection.cursor() as cursor:
             cursor.execute(
                 """
-                INSERT INTO extraction_job_tasks (job_id, source, keyword, status)
-                VALUES (%s, %s, %s, 'running')
+                INSERT INTO extraction_job_tasks (job_id, extraction_name, source, keyword, status)
+                VALUES (%s, %s, %s, %s, 'running')
                 ON CONFLICT (job_id, source, keyword)
                 DO UPDATE SET
+                    extraction_name = EXCLUDED.extraction_name,
                     status = EXCLUDED.status,
                     started_at = NOW(),
                     finished_at = NULL,
@@ -105,9 +114,10 @@ class PostgresExtractionControlPlane:
                     inserted_count = 0,
                     duplicate_count = 0;
                 """,
-                (job_id, source, keyword),
+                (job_id, extraction_name, source, keyword),
             )
         self._connection.commit()
+        return extraction_name
 
     def finish_task(
         self,

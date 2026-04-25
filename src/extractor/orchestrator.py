@@ -124,7 +124,11 @@ def run_extraction(*, keywords_path: Path, limit: int, cookies_path: Path) -> in
     try:
         for fetcher in fetchers:
             for keyword in keywords:
-                control_plane.start_task(job_id=job_id, source=fetcher.source_name, keyword=keyword)
+                extraction_name = control_plane.start_task(
+                    job_id=job_id,
+                    source=fetcher.source_name,
+                    keyword=keyword,
+                )
                 fetched_count = 0
                 inserted_count = 0
                 duplicate_count = 0
@@ -133,6 +137,7 @@ def run_extraction(*, keywords_path: Path, limit: int, cookies_path: Path) -> in
                     fetched_count = len(posts)
                     inserted_count, duplicate_count = s3_persister.persist_posts(
                         source=fetcher.source_name,
+                        extraction_name=extraction_name,
                         posts=posts,
                     )
                     control_plane.finish_task(
