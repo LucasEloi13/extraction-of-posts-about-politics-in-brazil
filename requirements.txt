@@ -1,0 +1,5 @@
+praw
+playwright
+psycopg[binary]
+boto3
+python-dotenv

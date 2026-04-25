@@ -8,3 +8,8 @@ wheels/
 
 # Virtual environments
 .venv
+teste.py
+.env
+
+cookies.json
+copilot-instructions.md
