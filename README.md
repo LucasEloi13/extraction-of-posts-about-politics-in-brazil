@@ -10,11 +10,12 @@ Pipeline de extração de posts políticos em Reddit, Bluesky e X.
    - `POSTGRES_DB`
    - `POSTGRES_HOST`
    - `POSTGRES_PORT`
-2. Preencha `keywords.txt` com uma keyword por linha.
-3. Execute:
+2. Preencha `config/keywords.txt` com uma keyword por linha.
+3. Ajuste `config/extraction.yml` com o número de workers desejado.
+4. Execute:
 
 ```bash
-python src/extractor/orchestrator.py --keywords keywords.txt --limit 100 --cookies cookies.json
+python src/extractor/orchestrator.py --config config/extraction.yml --limit 100
 ```
 
 ### Idempotência
