@@ -41,6 +41,7 @@ class ExtractionSettings:
     keywords_path: Path
     cookies_path: Path
     max_workers: int
+    per_keyword_limit: int
 
 
 @dataclass(frozen=True)
@@ -125,12 +126,21 @@ def load_settings(path: Path) -> ExtractionSettings:
     if max_workers < 1:
         raise ValueError("max_workers deve ser maior ou igual a 1.")
 
+    per_keyword_limit_raw = payload.get("per_keyword_limit", 100)
+    try:
+        per_keyword_limit = int(per_keyword_limit_raw)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("per_keyword_limit deve ser um número inteiro.") from exc
+    if per_keyword_limit < 1:
+        raise ValueError("per_keyword_limit deve ser maior ou igual a 1.")
+
     keywords_value = payload.get("keywords_path", "config/keywords.txt")
     cookies_value = payload.get("cookies_path", "cookies.json")
     return ExtractionSettings(
         keywords_path=Path(str(keywords_value)),
         cookies_path=Path(str(cookies_value)),
         max_workers=max_workers,
+        per_keyword_limit=per_keyword_limit,
     )
 
 
@@ -302,7 +312,6 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Orquestrador da extração em múltiplas redes.")
     parser.add_argument("--config", default="config/extraction.yml")
     parser.add_argument("--keywords", default=None)
-    parser.add_argument("--limit", type=int, default=100)
     parser.add_argument("--cookies", default=None)
     parser.add_argument("--workers", type=int, default=None)
     args = parser.parse_args()
@@ -313,9 +322,10 @@ def main() -> int:
     resolved_keywords_path = Path(args.keywords) if args.keywords else settings.keywords_path
     resolved_cookies_path = Path(args.cookies) if args.cookies else settings.cookies_path
     resolved_workers = args.workers if args.workers is not None else settings.max_workers
+    resolved_limit = max(1, min(settings.per_keyword_limit, 100))
     return run_extraction(
         keywords_path=resolved_keywords_path,
-        limit=max(1, min(args.limit, 100)),
+        limit=resolved_limit,
         cookies_path=resolved_cookies_path,
         max_workers=max(1, resolved_workers),
     )

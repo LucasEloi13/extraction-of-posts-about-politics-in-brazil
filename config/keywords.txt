@@ -3,29 +3,29 @@ Bolsonaro
 Tarcísio de Freitas
 Ronaldo Caiado
 Romeu Zema
-Ratinho Júnior
-Ciro Gomes
-Simone Tebet
-Eduardo Leite
-Flávio Bolsonaro
+Renan Santos
+Missão 14
 Michelle Bolsonaro
 Pablo Marçal
+Aldo Rebelo
+Cabo Daciolo
+Augusto Cury
 Alexandre de Moraes
 Arthur Lira
 Rodrigo Pacheco
-Geraldo Alckmin
 Guilherme Boulos
-Ricardo Salles
+Geraldo Alckmin
 Eleições 2026
-Pré-candidato
-Pré-candidatura
+Janela partidária
+Domicílio eleitoral
+Convenções partidárias
+Registro de candidatura
 Deputado Federal
 Deputada Federal
 Senador
 Senadora
 Governador
 Governadora
-Reeleição
 Câmara dos Deputados
 Senado Federal
 Congresso Nacional
@@ -35,67 +35,16 @@ Justiça Eleitoral
 Urna Eletrônica
 Pesquisa Eleitoral
 Intenção de voto
-Voto útil
-Terceira via
-Esquerda
-Direita
-Centrão
-Oposição
-Situação
-Base governista
-Bancada
-Frente parlamentar
+Fundo Especial de Financiamento de Campanha
+Quociente Eleitoral
+Corrupção
+Federação Partidária
 Partido dos Trabalhadores
 Partido Liberal
 União Brasil
-MDB
-PSD
-Progressistas
-PSDB
+Partido Novo
 PSOL
-Republicanos
-PDT
-Solidariedade
-Democracia
-Constituição
 Impeachment
-Corrupção
-Privatização
-Estatização
-Reforma Tributária
-Reforma Política
-Fundo Partidário
-Fundo Eleitoral
-Orçamento Secreto
-Emendas parlamentares
-Emendas PIX
-Bolsa Família
-Agronegócio
-Segurança Pública
-Infraestrutura
-Saneamento
-Fake News
-Censura
-Liberdade de Expressão
-Militância
-Patriota
-Comunismo
+Militante
 Fascismo
-Ministro do STF
-Ministério da Fazenda
-Casa Civil
-Palácio do Planalto
-Esplanada dos Ministérios
-Poder Judiciário
-Poder Legislativo
-Poder Executivo
-Bolsonarismo
-Petismo
-Lulismo
-Voto de legenda
-Quociente eleitoral
-Cláusula de barreira
-Janela partidária
-Federação partidária
-Cabo eleitoral
-Marqueteiro político
+Golpe

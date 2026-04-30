@@ -1,3 +1,4 @@
 keywords_path: config/keywords.txt
 cookies_path: cookies.json
-max_workers: 8
+max_workers: 4
+per_keyword_limit: 20
